@@ -24,66 +24,20 @@ export default {
   },
   mixins: [globalMixin],
   setup() {
-    const count = ref(0);
-    const view = true;
-    const dogPhoto = {};
+    const dogPhoto = ref({});
 
-    const getDogPhoto = () => {
-      console.log("getDogPhoto");
+    async function getDogPhoto () {
+        const getDogPhotoApi = fetch("https://dog.ceo/api/breeds/image/random");
+        const responeData = await (await getDogPhotoApi).json();
+        dogPhoto.value = responeData;
     };
-
-    onBeforeUnmount(() => {
-      console.log("onBeforeUnmount !!");
-    });
-
-    onUnmounted(() => {
-      console.log("onUnmounted !!");
-    });
     
     onMounted(() => {
       console.log("onMounted !!");
       getDogPhoto();
     });
 
-    onBeforeUpdate(() => {
-      console.log("onBeforeUpdate !!");
-    });
-
-    onUpdated(() => {
-      console.log("onUpdated !!");
-
-        // text content should be the same as current `count.value`
-        console.log(document.getElementById('count')?.textContent);
-    });
-
-    onRenderTriggered(() => {
-      console.log("onRenderTriggered !!");
-    });
-
-    // When DOM has chenged, Not called during server-side rendering
-    onRenderTracked(() => {
-      console.log("onRenderTracked !!");
-    });
-
-    onErrorCaptured(() => {
-      console.log("onErrorCaptured !!");
-    });
-
-    onActivated(() => {
-      console.log("onActivated !!");
-    });
-
-    onDeactivated(() => {
-      console.log("onDeactivated !!");
-    });
-
-    onServerPrefetch(() => {
-      console.log("onServerPrefetch !!");
-    });
-
     return {
-      count,
-      view,
       dogPhoto
     }
   }
@@ -91,20 +45,7 @@ export default {
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-      <button id="count" v-if="view" @click="count++">Click to: + {{ count }}</button>
-    </div>
-  </header>
-  <RouterView/>
+  <p>{{ dogPhoto.message }}</p>
 </template>
 
 <style scoped>
