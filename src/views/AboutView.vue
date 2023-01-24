@@ -1,3 +1,11 @@
+<script lang="ts">
+import globalMixin from "../mixin/globalMixin";
+
+export default {
+  mixins: [globalMixin],
+}
+</script>
+
 <template>
   <div class="about">
     <h1>This is an about page</h1>

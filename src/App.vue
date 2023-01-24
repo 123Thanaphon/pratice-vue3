@@ -1,7 +1,10 @@
 <script lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import globalMixin from "./mixin/globalMixin";
+
 import {
+  ref,
   onMounted,
   onUpdated,
   onUnmounted,
@@ -16,41 +19,54 @@ import {
 } from "vue";
 
 export default {
+  components: {
+    HelloWorld,
+  },
+  mixins: [globalMixin],
   setup() {
-    onMounted(() => {
-      console.log("onMounted !!");
-    });
+    const count = ref(0);
+    const view = true;
+    const dogPhoto = {};
 
-    onUpdated(() => {
-      console.log("onUpdated !!");
-    });
-
-    onUnmounted(() => {
-      console.log("onUnmounted !!");
-    });
-
-    onBeforeUpdate(() => {
-      console.log("onBeforeUpdate !!");
-    });
-
-    onBeforeUpdate(() => {
-      console.log("onBeforeUpdate !!");
-    });
+    const getDogPhoto = () => {
+      console.log("getDogPhoto");
+    };
 
     onBeforeUnmount(() => {
       console.log("onBeforeUnmount !!");
     });
 
-    onErrorCaptured(() => {
-      console.log("onErrorCaptured !!");
+    onUnmounted(() => {
+      console.log("onUnmounted !!");
+    });
+    
+    onMounted(() => {
+      console.log("onMounted !!");
+      getDogPhoto();
     });
 
-    onRenderTracked(() => {
-      console.log("onRenderTracked !!");
+    onBeforeUpdate(() => {
+      console.log("onBeforeUpdate !!");
+    });
+
+    onUpdated(() => {
+      console.log("onUpdated !!");
+
+        // text content should be the same as current `count.value`
+        console.log(document.getElementById('count')?.textContent);
     });
 
     onRenderTriggered(() => {
       console.log("onRenderTriggered !!");
+    });
+
+    // When DOM has chenged, Not called during server-side rendering
+    onRenderTracked(() => {
+      console.log("onRenderTracked !!");
+    });
+
+    onErrorCaptured(() => {
+      console.log("onErrorCaptured !!");
     });
 
     onActivated(() => {
@@ -64,6 +80,12 @@ export default {
     onServerPrefetch(() => {
       console.log("onServerPrefetch !!");
     });
+
+    return {
+      count,
+      view,
+      dogPhoto
+    }
   }
 }
 </script>
@@ -79,10 +101,10 @@ export default {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+      <button id="count" v-if="view" @click="count++">Click to: + {{ count }}</button>
     </div>
   </header>
-
-  <RouterView />
+  <RouterView/>
 </template>
 
 <style scoped>
