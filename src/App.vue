@@ -65,6 +65,7 @@ export default {
       console.log("onRenderTracked !!");
     });
 
+    // TODO: POC
     onErrorCaptured(() => {
       console.log("onErrorCaptured !!");
     });
