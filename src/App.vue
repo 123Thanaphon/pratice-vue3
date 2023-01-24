@@ -1,6 +1,71 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
+import {
+  onMounted,
+  onUpdated,
+  onUnmounted,
+  onBeforeUpdate,
+  onBeforeUnmount,
+  onErrorCaptured,
+  onRenderTriggered,
+  onRenderTracked,
+  onActivated,
+  onDeactivated,
+  onServerPrefetch
+} from "vue";
+
+export default {
+  setup() {
+    onMounted(() => {
+      console.log("onMounted !!");
+    });
+
+    onUpdated(() => {
+      console.log("onUpdated !!");
+    });
+
+    onUnmounted(() => {
+      console.log("onUnmounted !!");
+    });
+
+    onBeforeUpdate(() => {
+      console.log("onBeforeUpdate !!");
+    });
+
+    onBeforeUpdate(() => {
+      console.log("onBeforeUpdate !!");
+    });
+
+    onBeforeUnmount(() => {
+      console.log("onBeforeUnmount !!");
+    });
+
+    onErrorCaptured(() => {
+      console.log("onErrorCaptured !!");
+    });
+
+    onRenderTracked(() => {
+      console.log("onRenderTracked !!");
+    });
+
+    onRenderTriggered(() => {
+      console.log("onRenderTriggered !!");
+    });
+
+    onActivated(() => {
+      console.log("onActivated !!");
+    });
+
+    onDeactivated(() => {
+      console.log("onDeactivated !!");
+    });
+
+    onServerPrefetch(() => {
+      console.log("onServerPrefetch !!");
+    });
+  }
+}
 </script>
 
 <template>
