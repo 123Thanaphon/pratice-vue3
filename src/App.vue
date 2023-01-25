@@ -1,16 +1,33 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import BaseButton from './components/BaseButton.vue';
 import BaseDisplay from './components/BaseDisplay.vue';
 
 const testProp = 'Click to active';
 const isActive = ref(false);
+const countClickNumber = ref(0);
+
+const checkActiveBox = computed(() => {
+  return countClickNumber.value;
+});
+
+let historys = ref([0]);
+const displayHistoryList = (clickNumber:number) => {
+  countClickNumber.value = countClickNumber.value + clickNumber;
+};
 </script>
 
 <template>
   <div>
     <BaseButton :text="testProp" @click="isActive = !isActive" />
     <BaseDisplay :isActive="isActive"/>
+
+    Display: {{ checkActiveBox }}
+    Display history list
+
+    <BaseButton text="1" @click="displayHistoryList(1)"/>
+    <BaseButton text="2" @click="displayHistoryList(2)"/>
+    <BaseDisplay :isActive="checkActiveBox >= 5 ? true : false"/>
   </div>
 </template>
 
