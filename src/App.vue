@@ -1,14 +1,16 @@
 <script setup lang="ts">
-  import BaseButton from './components/BaseButton.vue';
-  import BaseDisplay from './components/BaseDisplay.vue';
+import { ref } from 'vue';
+import BaseButton from './components/BaseButton.vue';
+import BaseDisplay from './components/BaseDisplay.vue';
 
-  const testProp = 'const props';
+const testProp = 'const props';
+const isActive = ref(false);
 </script>
 
 <template>
   <div>
-    <BaseButton />
-    <BaseDisplay />
+    <BaseButton @click="isActive = true" />
+    <BaseDisplay :isActive="isActive"/>
   </div>
 </template>
 

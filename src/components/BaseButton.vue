@@ -6,7 +6,7 @@ export default {
         default: 'No text passed',
         required: true
      },
-  }
+  },
 }
 </script>
 
