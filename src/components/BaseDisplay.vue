@@ -19,7 +19,7 @@ export default {
 .box {
     height: 100px;
     width: 100px;
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .is-active {

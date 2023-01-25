@@ -4,7 +4,6 @@ export default {
      text: {
         type: String,
         default: 'No text passed',
-        required: true
      },
   },
 }

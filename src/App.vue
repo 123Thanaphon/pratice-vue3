@@ -3,13 +3,13 @@ import { ref } from 'vue';
 import BaseButton from './components/BaseButton.vue';
 import BaseDisplay from './components/BaseDisplay.vue';
 
-const testProp = 'const props';
+const testProp = 'Click to active';
 const isActive = ref(false);
 </script>
 
 <template>
   <div>
-    <BaseButton @click="isActive = true" />
+    <BaseButton :text="testProp" @click="isActive = !isActive" />
     <BaseDisplay :isActive="isActive"/>
   </div>
 </template>
