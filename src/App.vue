@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import BaseButton from './components/BaseButton.vue';
 import BaseDisplay from './components/BaseDisplay.vue';
 
@@ -15,6 +15,10 @@ let historys = ref([0]);
 const displayHistoryList = (clickNumber:number) => {
   countClickNumber.value = countClickNumber.value + clickNumber;
 };
+
+watch(countClickNumber, (count, prevCount) => {
+  console.log({ count,prevCount });
+});
 </script>
 
 <template>
