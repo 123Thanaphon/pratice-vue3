@@ -15,7 +15,8 @@ import {
   onRenderTracked,
   onActivated,
   onDeactivated,
-  onServerPrefetch
+  onServerPrefetch,
+  computed
 } from "vue";
 
 export default {
@@ -24,13 +25,17 @@ export default {
   },
   mixins: [globalMixin],
   setup() {
-    const count = ref(0);
+    const count = ref(3);
     const view = true;
     const dogPhoto = {};
 
     const getDogPhoto = () => {
-      console.log("getDogPhoto");
+      return "202";
     };
+
+    const publishedBooksMessage = computed(() => {
+      return count.value * 2;
+    });
 
     onBeforeUnmount(() => {
       console.log("onBeforeUnmount !!");
@@ -85,27 +90,18 @@ export default {
     return {
       count,
       view,
-      dogPhoto
+      dogPhoto,
+      getDogPhoto,
+      publishedBooksMessage
     }
   }
 }
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-      <button id="count" v-if="view" @click="count++">Click to: + {{ count }}</button>
-    </div>
-  </header>
-  <RouterView/>
+  <div>
+      {{ publishedBooksMessage }}
+  </div>
 </template>
 
 <style scoped>
