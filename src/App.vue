@@ -13,6 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/demo-route">demo-route</RouterLink>
+        <RouterLink :to="{ name: 'demoVueRouteCallByName' }">DemoVueRouteCallByName</RouterLink>
+        <RouterLink :to="{ name: 'demoRouteWithId', params: { testid: 1 }}">demoRouteWithId</RouterLink>
       </nav>
     </div>
   </header>
