@@ -19,6 +19,14 @@ const displayHistoryList = (clickNumber:any) => {
 	countClickNumber.value = countClickNumber.value + clickNumber;
 };
 
+const sumNumber = computed(() => {
+	let sum = 0;
+	console.log(historiesArray);
+	historiesArray.map(value => sum += value);
+	console.log(sum);
+	return sum;
+});
+
 watch(historiesArray, (oldCount,prevCount) => {
 	console.log({oldCount, prevCount});
 }, { deep: true });
@@ -29,13 +37,16 @@ watch(historiesArray, (oldCount,prevCount) => {
 	<BaseButton :text="testProp" @click="isActive = !isActive" />
 	<BaseDisplay :isActive="isActive"/>
 
-	Display: {{ countClickNumber }}
+	Display: {{ sumNumber }}
 	<BaseButton text="1" @click="displayHistoryList(1)"/>
 	<BaseButton text="2" @click="displayHistoryList(2)"/>
 	<br>
 	Display history list:
-	<ul id="historyList">
+	<!-- <ul id="historyList">
 
+	</ul> -->
+	<ul>
+		<li v-for="(history, index) in historiesArray" v-bind:key="index">{{ history }}</li>
 	</ul>
 	<BaseDisplay :isActive="countClickNumber >= 5 ? true : false"/>
 </div>
