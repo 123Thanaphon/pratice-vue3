@@ -3,10 +3,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 
 import { NO } from './utils/testUtil';
+
+const displayBoolean = NO();
 </script>
 
 <template>
-  {{ NO() }}
+  {{ displayBoolean }}
 </template>
 
 <style scoped>
