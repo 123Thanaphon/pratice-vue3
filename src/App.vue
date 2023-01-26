@@ -1,6 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import BaseDisplay from "./components/BaseDisplay.vue";
 import globalMixin from "./mixin/globalMixin";
 
 import {
@@ -19,35 +20,25 @@ import {
   computed
 } from "vue";
 
-export default {
-  components: {
-    HelloWorld,
-  },
-  mixins: [globalMixin],
-  setup() {
-    const count = ref(3);
-    const view = true;
-    const dogPhoto = {};
-
-    const getDogPhoto = () => {
-      return "202";
-    };
+	mixins: [globalMixin];
+    const count = ref(333333333333);
+    let active = ref(true);
 
     const publishedBooksMessage = computed(() => {
       return count.value * 2;
     });
 
-    onBeforeUnmount(() => {
-      console.log("onBeforeUnmount !!");
-    });
+	const clickActive = () => {
+		active.value = !active;
+	}
 
-    onUnmounted(() => {
-      console.log("onUnmounted !!");
-    });
-    
+	const checkDisplay = computed(() => {
+		console.log(active);
+		return active;
+	});
+
     onMounted(() => {
       console.log("onMounted !!");
-      getDogPhoto();
     });
 
     onBeforeUpdate(() => {
@@ -70,37 +61,18 @@ export default {
       console.log("onRenderTracked !!");
     });
 
-    // TODO: POC
-    onErrorCaptured(() => {
-      console.log("onErrorCaptured !!");
-    });
-
-    onActivated(() => {
-      console.log("onActivated !!");
-    });
-
-    onDeactivated(() => {
-      console.log("onDeactivated !!");
-    });
-
-    onServerPrefetch(() => {
-      console.log("onServerPrefetch !!");
-    });
-
-    return {
-      count,
-      view,
-      dogPhoto,
-      getDogPhoto,
-      publishedBooksMessage
-    }
-  }
-}
+	const toggleShow = () => {
+		active.value = !active.value;
+	};
 </script>
 
 <template>
   <div>
       {{ publishedBooksMessage }}
+	  <button @click="toggleShow">Click to toggle</button>
+	  <keep-alive>
+		<BaseDisplay v-show="active"/>
+	  </keep-alive>
   </div>
 </template>
 
