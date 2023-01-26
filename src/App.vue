@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptured, onServerPrefetch, onMounted} from 'vue';
+
+
+onMounted(() => {
+      console.log("onMounted !!");
+    });
 </script>
 
 <template>

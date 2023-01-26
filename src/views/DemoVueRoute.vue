@@ -1,7 +1,32 @@
-<script lang="ts">
-export default {
-    name: 'DemoDemoDemo'
-}
+<script setup lang="ts">
+import { onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptured, onServerPrefetch, onMounted} from 'vue';
+    onBeforeUnmount(() => {
+      console.log("onBeforeUnmount !!");
+    });
+
+    onUnmounted(() => {
+      console.log("onUnmounted !!");
+    });
+
+    onActivated(() => {
+      console.log("onActivated !!");
+    });
+
+    onDeactivated(() => {
+      console.log("onDeactivated !!");
+    });
+
+    onErrorCaptured(() => {
+      console.log("onErrorCaptured !!");
+    });
+
+    onServerPrefetch(() => {
+      console.log("onServerPrefetch !!");
+    });
+
+    onMounted(() => {
+      console.log("onMounted !!");
+    });
 </script>
 
 <template>

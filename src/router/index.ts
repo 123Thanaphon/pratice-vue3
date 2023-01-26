@@ -22,7 +22,7 @@ const router = createRouter({
     },
     {
       path: '/demo-route',
-      name: '/demo-route',
+      name: 'demo-route',
       component: DemoRouteView,
     },
     {
