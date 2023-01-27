@@ -4,20 +4,24 @@ import BaseButton from './components/BaseButton.vue';
 import BaseDisplay from './components/BaseDisplay.vue';
 
 const testProp = 'Click to active';
-const isActive = ref(false);
+const isActive = ref<boolean>(false);
 const countClickNumber = ref(0);
+const historyList = ref<number[]>([]);
+const historyClickList = ref<string[]>([]);
 
 const checkActiveBox = computed(() => {
   return countClickNumber.value;
 });
 
-let historys = ref([0]);
 const displayHistoryList = (clickNumber:number) => {
-  countClickNumber.value = countClickNumber.value + clickNumber;
+  historyList.value.push(clickNumber);
+  historyClickList.value.push(historyList.value.join('+'));
 };
 
-watch(countClickNumber, (count, prevCount) => {
-  console.log({ count,prevCount });
+watch(historyList.value, (newVal, old) => {
+  historyList.value.forEach((val) => {
+    countClickNumber.value += val;
+  })
 });
 </script>
 
@@ -26,12 +30,18 @@ watch(countClickNumber, (count, prevCount) => {
     <BaseButton :text="testProp" @click="isActive = !isActive" />
     <BaseDisplay :isActive="isActive"/>
 
-    Display: {{ checkActiveBox }}
+    Display: {{ countClickNumber }}
     Display history list
+    {{ historyList.join('+') }}
 
+    <ul>
+      <li v-for="(historyClick, index) in historyClickList" :key="index">
+        {{ historyClick }}
+      </li>
+    </ul>
     <BaseButton text="1" @click="displayHistoryList(1)"/>
     <BaseButton text="2" @click="displayHistoryList(2)"/>
-    <BaseDisplay :isActive="checkActiveBox >= 5 ? true : false"/>
+    <BaseDisplay :isActive="countClickNumber >= 5 ? true : false"/>
   </div>
 </template>
 
