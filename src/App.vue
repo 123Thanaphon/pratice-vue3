@@ -5,8 +5,8 @@ import { onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptur
 
 
 onMounted(() => {
-      console.log("onMounted !!");
-    });
+	console.log("onMounted !!");
+});
 </script>
 
 <template>
