@@ -21,7 +21,11 @@ onMounted(() => {
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/demo-route">demo-route</RouterLink>
         <RouterLink :to="{ name: 'demoVueRouteCallByName' }">DemoVueRouteCallByName</RouterLink>
-        <RouterLink :to="{ name: 'demoRouteWithId', params: { testid: 1 }}">demoRouteWithId</RouterLink>
+        <RouterLink :to="{ name: 'demoRouteWithId', params: { testid: 50 }}">demoRouteWithId</RouterLink>
+        <RouterLink :to="{ name: 'profile' }">profile</RouterLink>
+        <RouterLink :to="{ name: 'childRoute1' }">demoRouteWithChildRoute</RouterLink>
+        <RouterLink :to="{ name: 'child-of-child-index' }">demoRouteWithChildOfChildIndexRoute</RouterLink>
+        <RouterLink :to="{ name: 'childOfChildRoute1' }">demoRouteWithChildOfChildRoute</RouterLink>
       </nav>
     </div>
   </header>

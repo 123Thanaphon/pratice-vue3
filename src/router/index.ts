@@ -4,6 +4,14 @@ import DemoRouteView from '../views/DemoVueRoute.vue';
 import DemoVueRouteCallByName from '../views/demoVueRouteCallByName.vue';
 import DemoVueRouteCallById from '../views/DemoVueRouteCallById.vue';
 
+const routesWithPrefix = (prefix:any, routes:any) => {
+  return routes.map((route:any) => {
+    route.path = `${prefix}${route.path}`
+
+    return route
+  })
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -34,8 +42,46 @@ const router = createRouter({
       path: '/demo-route-with-id/:testid',
       name: 'demoRouteWithId',
       component: DemoVueRouteCallById,
+
+      children: [
+        {
+          // UserProfile will be rendered inside User's <router-view>
+          // when /user/:id/profile is matched
+          path: '/profile',
+          name: 'profile',
+          component: DemoVueRouteCallById,
+        }
+      ]
     },
-  ]
+    ...routesWithPrefix('/demo-route', [
+      {
+        path: '/',
+        component: DemoVueRouteCallByName
+      },
+      {
+        path: '/child-route-1',
+        name: 'childRoute1',
+        component: DemoVueRouteCallByName
+      },
+      {
+        path: '/child-route-2',
+        name: 'childRoute2',
+        component: DemoVueRouteCallByName
+      },
+      ...routesWithPrefix('/demo-child-of-child', [
+        {
+          path: '/',
+          name: 'child-of-child-index',
+          component: DemoVueRouteCallByName
+        },
+        {
+          path: '/child-of-child-route-1',
+          name: 'childOfChildRoute1',
+          component: DemoVueRouteCallById
+        },
+      ]),
+    ]),
+  ],
 })
 
 export default router
