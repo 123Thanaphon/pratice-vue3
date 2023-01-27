@@ -1,6 +1,14 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import BaseBlack from '../components/BaseBlack.vue';
+import BaseRed from '../components/BaseRed.vue';
+
+const currentComponent = ref(BaseBlack);
+</script>
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <button @click="currentComponent = BaseRed">Switch component</button>
+    <component :is="currentComponent"></component>
   </div>
 </template>
 
