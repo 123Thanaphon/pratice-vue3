@@ -10,7 +10,12 @@ const historyList = ref<number[]>([]);
 const historyClickList = ref<string[]>([]);
 
 const checkActiveBox = computed(() => {
-  return countClickNumber.value;
+  let sum = 0;
+  for (let i = 0; i < historyList.value.length; i++) {
+    sum += historyList.value[i];
+  }
+  
+  return sum;
 });
 
 const displayHistoryList = (clickNumber:number) => {
@@ -30,7 +35,7 @@ watch(historyList.value, (newVal, old) => {
     <BaseButton :text="testProp" @click="isActive = !isActive" />
     <BaseDisplay :isActive="isActive"/>
 
-    Display: {{ countClickNumber }}
+    Display: {{ checkActiveBox }}
     Display history list
     {{ historyList.join('+') }}
 
