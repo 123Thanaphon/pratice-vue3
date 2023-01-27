@@ -38,8 +38,9 @@ const router = createRouter({
       name: 'demoVueRouteCallByName',
       component: DemoVueRouteCallByName,
 
-      beforeEnter: (to, from) => {
-        return { name: 'profile' };
+      beforeEnter: (to, from, next) => {
+        next();
+        // return { name: 'profile' };
       },
     },
     {
