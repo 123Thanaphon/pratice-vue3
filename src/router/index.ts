@@ -98,7 +98,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    return next('/profile');
+    return next('/');
   }
 
   next();
