@@ -4,11 +4,13 @@ import BaseBlack from '../components/BaseBlack.vue';
 import BaseRed from '../components/BaseRed.vue';
 
 const currentComponent = ref(BaseBlack);
+const href = false;
 </script>
 <template>
   <div class="about">
     <button @click="currentComponent = BaseRed">Switch component</button>
     <component :is="currentComponent"></component>
+    <component :is="href ? 'a' : 'span'">Link</component>
   </div>
 </template>
 
