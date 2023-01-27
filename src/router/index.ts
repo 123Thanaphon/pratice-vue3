@@ -37,6 +37,10 @@ const router = createRouter({
       path: '/demoVueRouteCallByName',
       name: 'demoVueRouteCallByName',
       component: DemoVueRouteCallByName,
+
+      beforeEnter: (to, from) => {
+        return { name: 'profile' };
+      },
     },
     {
       path: '/demo-route-with-id/:testid',
