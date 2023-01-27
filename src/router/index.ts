@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import DemoRouteView from '../views/DemoVueRoute.vue';
 import DemoVueRouteCallByName from '../views/demoVueRouteCallByName.vue';
 import DemoVueRouteCallById from '../views/DemoVueRouteCallById.vue';
+import { nextTick } from 'vue';
 
 const routesWithPrefix = (prefix:any, routes:any) => {
   return routes.map((route:any) => {
@@ -37,11 +38,11 @@ const router = createRouter({
       path: '/demoVueRouteCallByName',
       name: 'demoVueRouteCallByName',
       component: DemoVueRouteCallByName,
-
-      beforeEnter: (to, from, next) => {
-        next();
-        // return { name: 'profile' };
-      },
+      meta: { requiresAuth: true },
+      // beforeEnter: (to, from, next) => {
+      //   next();
+      //   // return { name: 'profile' };
+      // },
     },
     {
       path: '/demo-route-with-id/:testid',
@@ -87,6 +88,20 @@ const router = createRouter({
       ]),
     ]),
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  console.log(from);
+  // instead of having to check every route record with
+  // to.matched.some(record => record.meta.requiresAuth)
+  if (to.meta.requiresAuth) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    return next('/profile');
+  }
+
+  next();
 })
 
 export default router
