@@ -2,11 +2,6 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptured, onServerPrefetch, onMounted} from 'vue';
-
-
-onMounted(() => {
-	console.log("onMounted !!");
-});
 </script>
 
 <template>
@@ -21,8 +16,8 @@ onMounted(() => {
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/demo-route">demo-route</RouterLink>
         <RouterLink :to="{ name: 'demoVueRouteCallByName' }">DemoVueRouteCallByName</RouterLink>
-        <RouterLink :to="{ name: 'demoRouteWithId', params: { testid: 50 }}">demoRouteWithId</RouterLink>
-        <RouterLink :to="{ name: 'profile' }">profile</RouterLink>
+        <!-- <RouterLink to="/user/40/profile">demoRouteWithId</RouterLink> -->
+        <RouterLink to="/user/12/profile">demoRouteWithId</RouterLink>
         <RouterLink :to="{ name: 'childRoute1' }">demoRouteWithChildRoute</RouterLink>
         <RouterLink :to="{ name: 'child-of-child-index' }">demoRouteWithChildOfChildIndexRoute</RouterLink>
         <RouterLink :to="{ name: 'childOfChildRoute1' }">demoRouteWithChildOfChildRoute</RouterLink>

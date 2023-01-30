@@ -5,6 +5,7 @@ const route = useRoute();
 const queryParam = route.query.name;
 
 onMounted(() => {
+  console.log(queryParam);
   console.log(route.params.testid);
 })
 </script>

@@ -45,17 +45,20 @@ const router = createRouter({
       // },
     },
     {
-      path: '/demo-route-with-id/:testid',
-      name: 'demoRouteWithId',
-      component: DemoVueRouteCallById,
-
+      path: '/user/:testid/',
       children: [
         {
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
-          path: '/profile',
+          path: 'profile',
           name: 'profile',
-          component: DemoVueRouteCallById,
+          component: DemoVueRouteCallById
+        },
+        {
+          // UserPosts will be rendered inside User's <router-view>
+          // when /user/:id/posts is matched
+          path: '/posts',
+          component: DemoRouteView
         }
       ]
     },
@@ -91,8 +94,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
-  console.log(from);
   // instead of having to check every route record with
   // to.matched.some(record => record.meta.requiresAuth)
   if (to.meta.requiresAuth) {
