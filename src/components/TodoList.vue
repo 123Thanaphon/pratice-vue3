@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { useTodoListStore } from '../stores/todoList';
 import { storeToRefs } from 'pinia';
+import { computed } from '@vue/runtime-core';
 const store = useTodoListStore();
 const { todoList } = storeToRefs(store);
 const { toggleComplete, deleteTodo } = store;
-
-    function direcPatch() {
-        store.addTodo({item: 'ABCDEFG'});
-    }
 </script>
 
 <template>

@@ -91,8 +91,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
-  console.log(from);
   // instead of having to check every route record with
   // to.matched.some(record => record.meta.requiresAuth)
   if (to.meta.requiresAuth) {

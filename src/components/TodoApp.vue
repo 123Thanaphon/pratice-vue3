@@ -5,6 +5,12 @@
     import { storeToRefs } from 'pinia';
 
     const store = useTodoListStore();
+
+    function directPatch () {
+        store.$patch((state) => {
+            state.userList.push({ name: 'Shoes', age: 25 })
+        })
+    }
 </script>
 
 <template>
@@ -12,6 +18,7 @@
         <h1>To Do List</h1>
         <TodoForm />
         <TodoList />
-        <button @click="store.addTodo('ABCDEFG')">direct patch</button>
+        <button @click="directPatch()">Direct patch</button>
+        <button @click="store.$reset()">Reset</button>
     </div>
 </template>

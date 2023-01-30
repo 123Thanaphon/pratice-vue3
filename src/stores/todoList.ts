@@ -5,13 +5,20 @@ export const useTodoListStore = defineStore('todoList', {
     // getter
     // action
     state:() => ({
+        id: 0,
         todoList: [],
-        id: 0
+        userList: [] as UserInfo[],
     }),
     actions: {
         addTodo(item:any) {
             this.todoList.push(<never>{
                 item, id: this.id++, completed: false
+            })
+        },
+        addUser(item:any) {
+            console.log(item);
+            this.userList.push(<never>{
+                item
             })
         },
         deleteTodo(itemId:number) {
@@ -25,3 +32,8 @@ export const useTodoListStore = defineStore('todoList', {
         }
     },
 })
+
+interface UserInfo {
+    name: string
+    age: number
+}
