@@ -16,7 +16,6 @@ export const useTodoListStore = defineStore('todoList', {
             })
         },
         addUser(item:any) {
-            console.log(item);
             this.userList.push(<never>{
                 item
             })
