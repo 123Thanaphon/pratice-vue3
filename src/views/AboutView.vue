@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseBlack from '../components/BaseBlack.vue';
-import BaseRed from '../components/BaseRed.vue';
+const BaseBlack = () => import('../components/BaseBlack.vue')
+const BaseRed = () => import('../components/BaseRed.vue')
 
 const currentComponent = ref(BaseBlack);
 const href = false;
