@@ -16,8 +16,9 @@ import { onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptur
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/demo-route">demo-route</RouterLink>
         <RouterLink :to="{ name: 'demoVueRouteCallByName' }">DemoVueRouteCallByName</RouterLink>
-        <!-- <RouterLink to="/user/40/profile">demoRouteWithId</RouterLink> -->
-        <RouterLink to="/user/12/profile">demoRouteWithId</RouterLink>
+        <!-- <RouterLink to="/user/12/profile">demoRouteWithId</RouterLink> -->
+        <RouterLink :to="{ name: 'normal', params: { testid: 50 }}">demoRouteWithChildById</RouterLink>
+
         <RouterLink :to="{ name: 'childRoute1' }">demoRouteWithChildRoute</RouterLink>
         <RouterLink :to="{ name: 'child-of-child-index' }">demoRouteWithChildOfChildIndexRoute</RouterLink>
         <RouterLink :to="{ name: 'childOfChildRoute1' }">demoRouteWithChildOfChildRoute</RouterLink>
