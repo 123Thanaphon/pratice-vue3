@@ -14,15 +14,16 @@ function addUserFunc (name:any, age:any) {
     }
 
     store.addUser(name, age);
-    name.value = '';
-    age.value = '';
 }
 
 function directPatch () {
     store.$patch((state) => {
-        state.userList.push({ name: 'Shoes', age: 25 })
+        state.userList.push({ name: 'Shoes', age: 30 })
+
     });
 }
+
+
 </script>
 
 <template>
@@ -31,7 +32,7 @@ function directPatch () {
             <input type="text" v-model="name">
             <input type="text" v-model="age">
             <button>Add</button>
-            <button @click="directPatch()">Direct patch</button>
+            <button type="button" @click="directPatch()">Direct patch</button>
         </form>
 
         <ul>
