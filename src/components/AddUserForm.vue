@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia';
 const name = ref('');
 const age = ref('');
 const store = useUserListStore();
-const { userList } = storeToRefs(store);
+const { userList, totalUser } = storeToRefs(store);
 
 function addUserFunc (name:any, age:any) {
     if (name.lenght === 0 || age.lenght === 0) {
@@ -19,15 +19,13 @@ function addUserFunc (name:any, age:any) {
 function directPatch () {
     store.$patch((state) => {
         state.userList.push({ name: 'Shoes', age: 30 })
-
     });
 }
-
-
 </script>
 
 <template>
     <div>
+        {{ totalUser }}
         <form @submit.prevent="addUserFunc(name,age)">
             <input type="text" v-model="name">
             <input type="text" v-model="age">
@@ -38,7 +36,6 @@ function directPatch () {
         <ul>
             <li v-for="(user, index) in userList" :key="index">
                 Name: {{ user.name }} Age: {{ user.age }}
-
             </li>
         </ul>
     </div>

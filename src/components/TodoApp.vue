@@ -2,7 +2,6 @@
     import TodoForm from '../components/TodoForm.vue';
     import TodoList from '../components/TodoList.vue';
     import { useTodoListStore } from '../stores/todoList';
-    import { storeToRefs } from 'pinia';
 
     const store = useTodoListStore();
 </script>

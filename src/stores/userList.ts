@@ -1,3 +1,4 @@
+import { computed } from "@vue/reactivity";
 import { defineStore } from "pinia";
 import { ref } from 'vue';
 
@@ -20,8 +21,11 @@ export const useUserListStore = defineStore('userListStore', () => {
         })
     };
 
+    const totalUser = computed(() => userList.value.length);
+ 
     return {
         userList,
-        addUser
+        addUser,
+        totalUser
     };
 });
