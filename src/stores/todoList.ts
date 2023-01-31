@@ -11,12 +11,12 @@ export const useTodoListStore = defineStore('todoList', {
     }),
     actions: {
         addTodo(item:any) {
-            this.todoList.push(<never>{
+            this.todoList.push(<any>{
                 item, id: this.id++, completed: false
             })
         },
         addUser(item:any) {
-            this.userList.push(<never>{
+            this.userList.push(<any>{
                 item
             })
         },
