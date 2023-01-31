@@ -6,7 +6,7 @@ export const useTodoListStore = defineStore('todoList', {
     // action
     state:() => ({
         id: 0,
-        todoList: [],
+        todoList: [] as TodoInfo[],
         userList: [] as UserInfo[],
     }),
     actions: {
@@ -35,4 +35,9 @@ export const useTodoListStore = defineStore('todoList', {
 interface UserInfo {
     name: string
     age: number
+}
+
+interface TodoInfo {
+    item: string
+    completed: boolean
 }
