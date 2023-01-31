@@ -14,7 +14,7 @@ export const useUserListStore = defineStore('userListStore', () => {
 
     const userList = ref([] as UserInfo[]);
 
-    function addUser(name:any, age:any) {
+    function addUser(name:any, age:any) { // getter
         userList.value.push(<any>{
             name,
             age
