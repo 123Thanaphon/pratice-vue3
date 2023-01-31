@@ -1,3 +1,7 @@
+body {
+  background-color: #EEEEEE;
+}
+
 #app {
   display: flex;
   justify-content: center;

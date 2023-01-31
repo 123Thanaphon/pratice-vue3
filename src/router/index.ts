@@ -16,7 +16,10 @@ const router = createRouter({
     {
       path: '/maqe-test',
       name: 'maqe-test',
-      component: () => import('../components/MaqeTest.vue')
+      component: () => import('../components/MaqeTest.vue'),
+      children: [
+
+      ]
     }
   ]
 })

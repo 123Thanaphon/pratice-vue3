@@ -1,11 +1,15 @@
 <script setup lang="ts">
-const ForumItem = () => import('../components/ForumItem.vue');
+    import { computed } from '@vue/runtime-core';
+import ForumItem from '../components/ForumItem.vue';
+
+    const getCurrentTimeZone = computed(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
 </script>
 
 <template>
     <div class="container">
         <h1>Maqe Forum</h1>
-        <p>Your current timezone is: Asia/Bangkok</p>
+        <p>Your current timezone is: {{ getCurrentTimeZone }}</p>
+        <ForumItem />
         <ForumItem />
     </div>
 </template>
@@ -13,5 +17,6 @@ const ForumItem = () => import('../components/ForumItem.vue');
 <style scoped>
 .container {
     width: 70%;
+    background-color: #EEEEEE;
 }
 </style>
