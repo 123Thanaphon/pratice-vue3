@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import ForumDetail from '../components/ForumDetail.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,8 +18,13 @@ const router = createRouter({
       path: '/maqe-test',
       name: 'maqe-test',
       component: () => import('../components/MaqeTest.vue'),
-      children: [
 
+      children: [
+        {
+          path: 'profile',
+          name: 'profile',
+          component: ForumDetail
+        },
       ]
     }
   ]
