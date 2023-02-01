@@ -1,23 +1,51 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue'
 
-export const useAuthorsList = defineStore('authorList',() => {
-    const authors = ref([])
+interface AuthorInfo {
+    id: number
+    name: string
+    avatar_url; string
+}
 
-    async function fetchAuthors () {
-        fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c')
-        .then(async response => {
-            const dataResponse = await response.json();
-            return dataResponse;
-        })
-        .then(data => authors.value = data);
+export const useAuthorsList = defineStore('authorList', () => {
+
+    const authors = ref([] as AuthorInfo[]);
+
+    async function fetchAuthors() {
+        const response = await fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c');
+        const data = await response.json()
+        return data;
     }
 
-    function getOwnPost(authorId:number) {
-        return authors.value.find((authorItem:any) => authorItem.id === authorId);
+    async function setAuthorsList(data:object) {
+       authors.value = data;
     }
 
-    const getAuthorsList = computed(() => fetchAuthors());
+    const getOwnPost = computed(() => {
+        return (authorId) => state.authors.find((authorItem) => authorItem.id === authorId)
+    });
 
-    return { authors, getAuthorsList, getOwnPost }
+    // state: () => {
+    //     return {
+    //         authors: [] as AuthorInfo[],
+    //     }
+    // },
+
+    // actions: {
+    //     async fetchAuthors() {
+    //         const response = await fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c');
+    //         const data = await response.json()
+    //         return data;
+    //     },
+    //     setAuthorsList(data) {
+    //         this.authors = data;
+    //     }
+    // },
+
+    // getters: {
+    //     getOwnPost: (state) => {
+    //         return (authorId) => state.authors.find((authorItem) => authorItem.id === authorId)
+    //     },
+    // }
+    return { authors, fetchAuthors, getOwnPost, setAuthorsList }
 })

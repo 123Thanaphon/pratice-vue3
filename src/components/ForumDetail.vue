@@ -1,19 +1,61 @@
+<script setup lang="ts">
+    import { onMounted, ref, computed } from 'vue';
+    import { useRoute } from 'vue-router'
+    import { storeToRefs } from 'pinia';
+    import { usePostsList } from '../stores/posts';
+    import { useAuthorsList } from '../stores/authors';
+    import dayjs from 'dayjs';
+
+    const route = useRoute()
+    const postId = route.params.postId
+
+    const postsStore = usePostsList();
+    const authorsStore = useAuthorsList();
+
+    const { authors } = storeToRefs(authorsStore);
+    const { posts, postById } = storeToRefs(postsStore);
+
+    const { fetchAuthors, setAuthorsList } = authorsStore
+    const { fetchPostList, setPostsList, setPostById } = postsStore
+    const getAuthorById = ref('');
+
+    onMounted(async () => {
+        const getPosts = async () => {
+            const authorsData = await fetchAuthors();
+            setAuthorsList(authorsData);
+            
+            const postsData = await fetchPostList();
+            await setPostsList(postsData);
+        }
+
+        const getAuthor = async () => {
+            const findPost = posts.value.find(post => post.id == postId);
+            setPostById(findPost);
+
+            getAuthorById.value = authors.value.find(author => author.id == findPost.author_id);
+        };
+
+        await getPosts();
+        await getAuthor();
+    });
+</script>
+
 <template>
     <div class="container forum-item">
         <div class="title">
-            <img src="" alt="" class="post-by-img">
-            <span class="name"></span>
-            <span class="post-at">posted on </span>
+            <img :src="getAuthorById.avatar_url" alt="" class="post-by-img">
+            <span class="name">{{ getAuthorById.name }}</span>
+            <span class="post-at">posted on {{ dayjs(postById.created_at).format("dddd, MMMM D, YYYY, HH:mm") }}</span>
         </div>
 
         <div class="content-box">
-            <img src="" alt="forum-img" class="forum-img">
+            <img :src="postById.image_url" alt="forum-img" class="forum-img">
             <div class="content-body">
                 <span class="content-title">
-                    
+                    {{ postById.title }}
                 </span>
                 <p class="content">
-                    
+                    {{ postById.body }}
                 </p>
             </div>
         </div>
