@@ -25,7 +25,7 @@
     <div class="container">
         <h1>Maqe Forum</h1>
         <p>Your current timezone is: {{ getCurrentTimeZone }}</p>
-        <RouterLink v-for="post in posts" :key="post.id" :to="{ name: 'maqeTest', params: { postId: post.id }}" >
+        <RouterLink v-for="post in posts" :key="post.id" :to="{ name: 'postDetail', params: { postId: post.id }}" >
             <ForumItem :post="post" :authors="authors" />
         </RouterLink>
     </div>

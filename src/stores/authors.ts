@@ -17,8 +17,6 @@ export const useAuthorsList = defineStore('authorList',() => {
         return authors.value.find((authorItem:any) => authorItem.id === authorId);
     }
 
-    // const getOwnPost = (postId:number) => authors.value.find((element:any) => element.id === postId);
-
     const getAuthorsList = computed(() => fetchAuthors());
 
     return { authors, getAuthorsList, getOwnPost }
