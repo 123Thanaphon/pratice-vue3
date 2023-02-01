@@ -22,7 +22,7 @@ export const useAuthorsList = defineStore('authorList', () => {
     }
 
     const getOwnPost = computed(() => {
-        return (authorId) => state.authors.find((authorItem) => authorItem.id === authorId)
+        return (authorId) => authors.value.find((authorItem) => authorItem.id === authorId)
     });
 
     return { authors, fetchAuthors, getOwnPost, setAuthorsList }
