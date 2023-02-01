@@ -1,13 +1,25 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+interface PostsInfo {
+    id: number
+    author_id: number
+    title: string
+    body: string
+    image_url: string
+    created_at: string
+}
 
 export const usePostsList = defineStore('postList', () => {
-    const postList = ref([])
+    const posts = ref([] as PostsInfo[])
 
-    async function getPosts() {
-        const response = await fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c');
-        return await response.json();
+    async function fetchPostList () {
+        await fetch('https://mocki.io/v1/6bf4674b-da24-4452-b52a-c2d33ba40ae8')
+        .then(response => response.json())
+        .then(data => posts.value = data);
     }
 
-    return { postList, getPosts }
+    const getPostsList = computed(() => fetchPostList());
+
+    return { posts, getPostsList }
   })

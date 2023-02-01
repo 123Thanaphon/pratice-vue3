@@ -15,14 +15,14 @@ const router = createRouter({
     //   component: '<p>Page Not Found</p>'
     // },
     {
-      path: '/maqe-test',
+      path: '/maqe-test/',
       name: 'maqe-test',
       component: () => import('../components/MaqeTest.vue'),
 
       children: [
         {
-          path: 'profile',
-          name: 'profile',
+          path: ':postId/post-detail/',
+          name: 'postDetail',
           component: ForumDetail
         },
       ]

@@ -1,18 +1,39 @@
+<script setup lang="ts">
+import { defineProps, onMounted, ref } from 'vue';
+import { useAuthorsList } from '../stores/authors';
+import dayjs from 'dayjs';
+
+const authorsStore = useAuthorsList();
+const { getOwnPost } = authorsStore
+
+const props = defineProps({
+    post: {
+        type: Object,
+        required: true
+    },
+    authors: {
+        type: Object,
+        required: true
+    }
+});
+
+</script>
 <template>
     <div class="forum-item">
         <div class="title">
-            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="" class="post-by-img">
-            <span class="name">Jason Bourne</span>
-            <span class="post-at">posted on 2013-07-07T07:51:42Z</span>
+            <img :src="getOwnPost(props.post.author_id)?.avatar_url" alt="" class="post-by-img">
+            <span class="name">{{ getOwnPost(props.post.author_id)?.name }}</span>
+            <span class="post-at">posted on {{ dayjs(props.post.created_at).format("dddd, MMMM D, YYYY, HH:mm") }}</span>
         </div>
+
         <div class="content-box">
-            <img src="https://picsum.photos/id/1/320/240" alt="" class="forum-img">
+            <img :src="props.post.image_url" alt="forum-img" class="forum-img">
             <div class="content-body">
                 <span class="content-title">
-                    Let's see this awesome post!
+                    {{ props.post.title }}
                 </span>
                 <p class="content">
-                    I'm really glad to see this forums popular!
+                    {{ props.post.body }}
                 </p>
             </div>
         </div>
