@@ -12,10 +12,6 @@ const router = createRouter({
       component: () => import('../components/MaqeTest.vue'),
     },
     {
-      path: "/:pathMatch(.*)*",
-      component: PageNotFound,
-    },
-    {
       path: '/maqe-test',
       name: 'maqeTest',
 
@@ -26,6 +22,10 @@ const router = createRouter({
           component: () => import('../components/ForumDetail.vue'),
         }
       ]
+    },
+    {
+      path: "/:pathNotFound",
+      component: PageNotFound,
     },
   ]
 })
