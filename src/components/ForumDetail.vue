@@ -6,8 +6,8 @@
     import { useAuthorsList } from '../stores/authors';
     import dayjs from 'dayjs';
 
-    const route = useRoute()
-    const postId = route.params.postId
+    const route = useRoute();
+    const postId = route.params.postId;
 
     const postsStore = usePostsList();
     const authorsStore = useAuthorsList();
@@ -15,15 +15,15 @@
     const { authors } = storeToRefs(authorsStore);
     const { posts, postById } = storeToRefs(postsStore);
 
-    const { fetchAuthors, setAuthorsList } = authorsStore
-    const { fetchPostList, setPostsList, setPostById } = postsStore
+    const { fetchAuthors, setAuthorsList } = authorsStore;
+    const { fetchPostList, setPostsList, setPostById } = postsStore;
     const getAuthorById = ref('');
 
     onMounted(async () => {
         const getPosts = async () => {
             const authorsData = await fetchAuthors();
             setAuthorsList(authorsData);
-            
+
             const postsData = await fetchPostList();
             await setPostsList(postsData);
         }
