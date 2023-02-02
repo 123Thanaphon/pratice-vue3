@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 interface AuthorInfo {
     id: number
     name: string
-    avatar_url; string
+    avatar_url: string
 }
 
 export const useAuthorsList = defineStore('authorList', () => {
@@ -22,7 +22,7 @@ export const useAuthorsList = defineStore('authorList', () => {
     }
 
     const getOwnPost = computed(() => {
-        return (authorId) => authors.value.find((authorItem) => authorItem.id === authorId)
+        return (authorId:number) => authors.value.find((authorItem) => authorItem.id === authorId)
     });
 
     return { authors, fetchAuthors, getOwnPost, setAuthorsList }
