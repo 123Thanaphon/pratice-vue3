@@ -10,7 +10,6 @@ interface AuthorInfo {
 }
 
 export const useAuthorsList = defineStore('authorList', () => {
-
     const authors = ref([] as AuthorInfo[]);
 
     async function fetchAuthors() {

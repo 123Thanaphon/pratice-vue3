@@ -14,7 +14,7 @@ export const usePostsList = defineStore('postList', {
     state: () => {
         return {
             posts: [] as PostsInfo[],
-            postById: {} as PostsInfo[]
+            postById: {} as PostsInfo
         }
     },
 

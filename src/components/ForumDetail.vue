@@ -20,23 +20,23 @@
     const getAuthorById = ref('');
 
     onMounted(async () => {
-        const getPosts = async () => {
+        const getPostsAndAuthors = async () => {
             const authorsData = await fetchAuthors();
             setAuthorsList(authorsData);
 
             const postsData = await fetchPostList();
-            await setPostsList(postsData);
+            setPostsList(postsData);
         }
 
-        const getAuthor = async () => {
+        const getAuthor = () => {
             const findPost = posts.value.find(post => post.id == postId);
             setPostById(findPost);
 
             getAuthorById.value = authors.value.find(author => author.id == findPost.author_id);
         };
 
-        await getPosts();
-        await getAuthor();
+        await getPostsAndAuthors();
+        getAuthor();
     });
 </script>
 

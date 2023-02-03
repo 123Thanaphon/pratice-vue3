@@ -17,14 +17,14 @@ const router = createRouter({
 
       children: [
         {
-          path: ':postId/post-detail',
+          path: ':postId',
           name: 'postDetail',
           component: () => import('../components/ForumDetail.vue'),
         }
       ]
     },
     {
-      path: "/:pathNotFound",
+      path: "/:pathNotFound(.*)*",
       component: PageNotFound,
     },
   ]

@@ -12,14 +12,14 @@
 
     const { authors } = storeToRefs(authorsStore);
     const { posts } = storeToRefs(postsStore);
-    const { fetchAuthors, setAuthorsList } = authorsStore
-    const { fetchPostList, setPostsList } = postsStore
+    const { fetchAuthors, setAuthorsList } = authorsStore;
+    const { fetchPostList, setPostsList } = postsStore;
 
     onMounted(() => {
         const getPostsAndAuthors = async () => {
             const authorsData = await fetchAuthors();
             setAuthorsList(authorsData);
-            
+
             const postsData = await fetchPostList();
             setPostsList(postsData);
         }
