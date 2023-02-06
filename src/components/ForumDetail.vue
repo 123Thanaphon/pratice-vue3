@@ -17,7 +17,7 @@
 
     const { fetchAuthors, setAuthorsList } = authorsStore;
     const { fetchPostList, setPostsList, setPostById } = postsStore;
-    const getAuthorById = ref('');
+    const getAuthorById = ref({});
 
     onMounted(async () => {
         const getPostsAndAuthors = async () => {
@@ -29,10 +29,10 @@
         }
 
         const getAuthor = () => {
-            const findPost = posts.value.find(post => post.id == postId);
+            const findPost = posts.value.find(post => post.id === postId);
             setPostById(findPost);
 
-            getAuthorById.value = authors.value.find(author => author.id == findPost.author_id);
+            getAuthorById.value = authors.value.find(author => author.id == findPost?.author_id) ?? {};
         };
 
         await getPostsAndAuthors();

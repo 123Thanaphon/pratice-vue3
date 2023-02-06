@@ -23,8 +23,8 @@ const author = getOwnPost(props.post.author_id);
 <template>
     <div class="forum-item">
         <div class="title">
-            <img :src="author.avatar_url" alt="" class="post-by-img">
-            <span class="name">{{ author.name }}</span>
+            <img :src="author?.avatar_url" alt="" class="post-by-img">
+            <span class="name">{{ author?.name }}</span>
             <span class="post-at">posted on {{ dayjs(props.post.created_at).format("dddd, MMMM D, YYYY, HH:mm") }}</span>
         </div>
 
