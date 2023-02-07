@@ -1,29 +1,27 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue'
-
-interface AuthorInfo {
-    id: number
-    name: string
-    role: string
-    place: string
-    avatar_url: string
-}
+import type { AuthorInfo } from '../types/author'
 
 export const useAuthorsList = defineStore('authorList', () => {
-    const authors = ref([] as AuthorInfo[]);
+    const authors = ref([] as AuthorInfo[] | null);
 
     async function fetchAuthors() {
-        const response = await fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c');
-        const data = await response.json()
-        return data;
+        try {
+            const response = await fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c');
+            const data = await response.json();
+            return data ?? null;
+        }
+        catch(error) {
+            throw new Error('Can not fetch authors data.');
+        }
     }
 
-    async function setAuthorsList(data:object) {
-       authors.value = data;
+    function setAuthorsList(data: AuthorInfo[] | null) {
+        authors.value = data;
     }
 
     const getOwnPost = computed(() => {
-        return (authorId:number) => authors.value.find((authorItem) => authorItem.id === authorId)
+        return (authorId:number) => authors.value?.find((authorItem) => authorItem.id === authorId)
     });
 
     return { authors, fetchAuthors, getOwnPost, setAuthorsList }

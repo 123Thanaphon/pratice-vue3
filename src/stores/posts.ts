@@ -1,20 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useAuthorsList } from '../stores/authors';
-interface PostsInfo {
-    id: number
-    author_id: number
-    title: string
-    body: string
-    image_url: string
-    created_at: string
-}
+import type { PostsInfo } from '../types/post'
 
 export const usePostsList = defineStore('postList', {
     state: () => {
         return {
             posts: [] as PostsInfo[],
-            postById: {} as PostsInfo
+            postById: null as PostsInfo | null
         }
     },
 
@@ -27,8 +20,8 @@ export const usePostsList = defineStore('postList', {
         setPostsList(data: PostsInfo[]) {
             this.posts = data;
         },
-        setPostById(posts: PostsInfo) {
-            this.postById = posts;
+        setPostById(post: PostsInfo | null) {
+            this.postById = post;
         }
     },
 
