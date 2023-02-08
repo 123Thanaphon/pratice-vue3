@@ -10,8 +10,7 @@ export const useAuthorsList = defineStore('authorList', () => {
             const response = await fetch('https://mocki.io/v1/ee9fa656-9459-4bb6-92b6-f5bc008ab36c');
             const data = await response.json();
             return data ?? null;
-        }
-        catch(error) {
+        } catch(error) {
             throw new Error('Can not fetch authors data.');
         }
     }
