@@ -32,7 +32,7 @@
     <div class="container">
         <h1>Maqe Forum</h1>
         <p>Your current timezone is: {{ getCurrentTimeZone }}</p>
-        <div v-if="posts.length > 0 && authors && authors.length > 0">
+        <div v-if="posts.length > 0 && authors.length > 0">
             <RouterLink v-for="post in posts" :key="post.id" :to="{ name: 'postDetail', params: { postId: post.id }}">
                 <ForumItem :post="post" :authors="authors" />
             </RouterLink>

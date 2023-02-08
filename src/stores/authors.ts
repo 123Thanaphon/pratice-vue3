@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import type { AuthorInfo } from '../types/author'
 
 export const useAuthorsList = defineStore('authorList', () => {
-    const authors = ref([] as AuthorInfo[] | null);
+    const authors = ref([] as AuthorInfo[] | []);
 
     async function fetchAuthors() {
         try {
@@ -15,7 +15,7 @@ export const useAuthorsList = defineStore('authorList', () => {
         }
     }
 
-    function setAuthorsList(data: AuthorInfo[] | null) {
+    function setAuthorsList(data: AuthorInfo[] | []) {
         authors.value = data;
     }
 
