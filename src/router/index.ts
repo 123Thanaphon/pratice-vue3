@@ -15,7 +15,6 @@ const router = createRouter({
     {
       path: '/maqe-test',
       name: 'maqeTest',
-      // component: DemoComponent,
 
       children: [
         {
