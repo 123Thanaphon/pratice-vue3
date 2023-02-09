@@ -24,8 +24,8 @@ export const usePostsList = defineStore('postList', {
         setPostsList(data: PostsInfo[]) {
             this.posts = data;
         },
-        setPostById(post: PostsInfo | null) {
+        setPostById(post: PostsInfo) {
             this.postById = post;
         }
-    }
+    },
 })

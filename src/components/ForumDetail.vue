@@ -32,10 +32,12 @@ onMounted(async () => {
   };
 
   const getAuthor = () => {
-    const findPost = posts.value.find((post) => post.id === parseInt(postId, 10)) as PostsInfo | null;
-    setPostById(findPost);
+    const findPost = posts.value.find((post) => post.id === parseInt(postId, 10));
 
-    getAuthorById.value = authors.value?.find((author) => author.id == findPost?.author_id) as AuthorInfo | null;
+    if (findPost) {
+      setPostById(findPost);
+      getAuthorById.value = authors.value?.find((author) => author.id == findPost?.author_id) as AuthorInfo | null;
+    }
   };
 
   await getPostsAndAuthors();

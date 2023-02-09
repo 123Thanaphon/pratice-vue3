@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref, computed } from 'vue';
 import { useAuthorsList } from '../stores/authors';
 import { storeToRefs } from 'pinia';
 import dayjs from 'dayjs';
@@ -11,19 +11,16 @@ const props = defineProps({
     post: {
         type: Object,
         required: true
-    },
-    authors: {
-        type: Object,
-        required: true
     }
 });
 
 const author = getOwnPost(props.post.author_id);
+const imageSrc = computed(() => author ? author.avatar_url : 'src/assets/logo.svg');
 </script>
 <template>
     <div class="forum-item">
         <div class="title">
-            <img :src="author?.avatar_url" alt="" class="post-by-img">
+            <img :src="imageSrc" alt="" class="post-by-img">
             <span class="name">{{ author?.name }}</span>
             <span class="post-at">posted on {{ dayjs(props.post.created_at).format("dddd, MMMM D, YYYY, HH:mm") }}</span>
         </div>

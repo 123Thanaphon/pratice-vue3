@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ForumDetail from '../components/ForumDetail.vue';
 import PageNotFound from '../components/PageNotFound.vue';
-import DemoComponent from '../components/DemoComponent.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
